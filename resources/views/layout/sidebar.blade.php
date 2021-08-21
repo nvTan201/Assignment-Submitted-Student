@@ -45,15 +45,15 @@
                     </div>
                 </div>
                 <ul class="nav">
-                    {{-- <li class="active">
-                        <a href="{{ route('grade.index') }}">
-                            <i class="material-icons">dashboard</i>
-                            <p> Assignment </p>
+                    <li class="active">
+                        <a href="">
+                            <i class="material-icons-outlined"></i>
+                            <p> Thông báo </p>
                         </a>
-                    </li> --}}
-                    
+                    </li>
+                 
                   <li>
-                        <a href="{{ route('ExerciseFinish.index') }}">
+                        <a href="{{ route('file.get-all-file') }}">
                             <i class="material-icons">apps</i>
                             <p> ExerciseFinish
                                 <b class="caret"></b>
@@ -116,7 +116,14 @@
                        
                         
                     </li>
-                  
+                    <li>
+                        <a href="">
+                            <i class="material-icons">content_paste</i>
+                            <p> Xem điểm
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                    </li>
                    
                    
                     <li>

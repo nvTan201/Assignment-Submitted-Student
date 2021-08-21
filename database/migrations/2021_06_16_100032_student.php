@@ -21,6 +21,7 @@ class Student extends Migration
             $table->boolean('gender');
             $table->string('emailStudent', 100);
             $table->string('passWordStudent', 100);
+            $table->boolean('statusStudent');
             $table->unsignedInteger('idGrade');
             $table->foreign('idGrade')->references('idGrade')->on('grade');
         });

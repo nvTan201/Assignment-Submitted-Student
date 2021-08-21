@@ -19,6 +19,7 @@ class Teacher extends Migration
             $table->string('lastNameTeacher', 15);
             $table->string('emailTeacher', 100);
             $table->string('passWordTeacher', 100);
+            $table->boolean('statusTeacher');
         });
     }
 

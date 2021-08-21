@@ -4,34 +4,36 @@
 <div class="content">
     <h1>HELLO</h1>
  
-        <div id="row">
-          
-            <div class="col-lg-3 col-md-6 col-sm-6">
-               
-                <a href="{{ route('Exercise.index') }}">
-                
-                    <div class="card card-stats">
-                        <div class="card-header" data-background-color="blue">
-                            <i class="material-icons">LỚP</i>
-                        </div>
-                        <div class="card-content">
-                            <p class="category"></p>
-                            <h3 class="card-title"></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons text-danger"></i>
-                                <a href="#pablo"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-        
-   
        
-        </div>
-  
+          <body>
+              <form>
+                <input type="file">
+                <button type="button">clear</button>
+              </form>
+          </body>
+
+          <script>
+            var es = document.forms[0].elements;
+            
+            es[1].onclick = function(){
+              clearInputFile(es[0]);
+            };
+            
+                function clearInputFile(f){
+                    if(f.value){
+                        try{
+                            f.value = ''; //for IE11, latest Chrome/Firefox/Opera...
+                        }catch(err){
+                        }
+                        if(f.value){ //for IE5 ~ IE10
+                            var form = document.createElement('form'), ref = f.nextSibling;
+                            form.appendChild(f);
+                            form.reset();
+                            ref.parentNode.insertBefore(f,ref);
+                        }
+                    }
+                }
+            </script>
 </div>
 @endsection
 

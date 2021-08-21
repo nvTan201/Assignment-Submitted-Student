@@ -23,6 +23,14 @@
 
     <script type="text/javascript" src="{{ asset('ckeditor') }}/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset('ckeditor') }}/ckfinder/ckfinder.js"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="html2pdf.bundle.min.js"></script>  
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+
+
 
 </head>
 

@@ -104,7 +104,9 @@
                                                 <label class="control-label">Email address</label>
                                                 <input type="email" value=" @if (Session::exists("error"))
                                                 
-                                                        {{Session::get('error.email')}}            @endif" 
+                                                {{Session::get('error.email')}}  
+                                                  
+                                                                @endif" 
                                             name="email" class="form-control">
                                             </div>
                                         </div>

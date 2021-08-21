@@ -13,6 +13,7 @@ use App\Http\Middleware\CheckLogin;
 
 
 
+
 // use App\Http\Controllers\GradeController;
 // use App\Http\Controllers\GradeController1;
 
@@ -49,14 +50,11 @@ Route::middleware([CheckLogin::class])->group(function () {
 
     //đăng file
     Route::name('file.')->group(function () {
-        Route::get(
-            '/form',
-            [FileController::class, 'view-form']
-            // Route assigned name "admin.users"...
-        )->name('view-form');
+        Route::get('/form', [FileController::class, 'view-form'])->name('view-form');
+        // Route assigned name "admin.users"...
         Route::post('/upload-file', [FileController::class, 'uploadFile'])->name('upload-file');
-        Route::get('get-all-file', [FileController::class, 'getAllFile'])->name('get-all-file');
-        Route::post('dowload-file', [FileController::class, 'dowloadFile'])->name('dowload-file');
+        Route::get('/get-all-file', [FileController::class, 'getAllFile'])->name('get-all-file');
+        Route::post('/dowload-file', [FileController::class, 'dowloadFile'])->name('dowload-file');
     });
 });
 

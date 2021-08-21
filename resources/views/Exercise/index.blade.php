@@ -15,23 +15,26 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header card-header-icon" data-background-color="blue">
-                    <i class="material-icons">today</i>
-                </div>
+                
+               
                 @foreach ($exercises as $exercise)
-                    <div class="card-content">
-                    <h4 class="card-title"></h4>
-                    <a href="{{ route('Exercise.show', $exercise->idExercise) }}">
-                    <div class="form-group">
-                        <p>{{ $exercise->nameGrade  }}</p>
-                        <label class="label-control">{{ $exercise->question }} </label>
-                        <br>
-                        <p class="label-control">{{ $exercise->postingTime }} </p>
-                        {{-- <input type="text" class="form-control datetimepicker" value="10/05/2016" /> --}}
-                    </div>
+                <a href="{{ route('Exercise.show', $exercise->idExercise) }}">
+                 <table class="table table-striped " >
+                        <tr>
+                             <td>
+                                <b>Upcoming Submission : </b>{{ $exercise->nameGrade  }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="label-control">{{ $exercise->question }} </label>
+                                <br>
+                                <p class="label-control"> <b>Ngày đăng:</b> {{ $exercise->postingTime }}|<b>Deadline</b>{{ $exercise->deadlineSubmission }} |10Point</p>
+                            </td>
+                            
+                        </tr>
+                  </table>
                 </a>
-                </div>
-                @endforeach 
+                @endforeach
             </div>
        
         </div>

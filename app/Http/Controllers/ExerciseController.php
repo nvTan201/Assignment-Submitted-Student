@@ -20,11 +20,7 @@ class ExerciseController extends Controller
         // $search = $request->get('search');
         // SELECT * FROM `exercise` INNER JOIN grade ON grade.idGrade= exercise.idGrade WHERE exercise.idGrade
         // $exercises = Exercise::where('question', 'like', "%$search%")->paginate(1);
-        // $grades = DB::table('grade')
-        // ->join('exercise', 'grade.idGrade', '=', 'exercise.idGrade')
-        // ->select('grade.*', 'exercise.*')
-        // ->where('grade.idGrade', '=', $id)
-        // ->get();
+
         $exercises = DB::table('exercise')
             ->join('grade', 'exercise.idGrade', '=', 'grade.idGrade')
             ->select('grade.*', 'exercise.*')

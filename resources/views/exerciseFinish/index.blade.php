@@ -3,37 +3,31 @@
 
 <div class="content">
     <div class="card">
-        
+        <h3>Các bài tập đã nộp</h3>
         <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên file</th>
+                <th scope="col">Tên file/Text</th>
+                <th  scope="col">Nội dung</th>
                 <th scope="col">Ngày nộp</th>
-                <th>Dowload</th>
+                
+                
               </tr>
             </thead>
             <tbody>
-              @foreach ($files as $file)
-                <tr>
-                  <th scope="row">{{ $file->idExerciseFinish }}</th>
-                  <td>{{ $file->exerciseFinish }}</td>
-                  <td>{{ $file->responseTime }}</td>
-                  <td>
-                      <form action=""  method="POST">
-                        @csrf
-                        <input type="hidden" name="file" >
-                            <button class= "btn btn info"> Dowload</button>
-                      </form>
-                  </td>
-                  
-                </tr>
-              @endforeach
-            
+              @foreach($files as $file)
+              <tr>
+                <th scope="row">{{ $file->idExerciseFinish }}</th>
+                <td>{{ $file->title }}</td>
+                <td>{{ $file->exerciseFinish }}</td>
+                <td>{{ $file->responseTime }}</td>
+                
              
+              </tr>
+              @endforeach
             </tbody>
           </table>
-        <!-- end content-->
     </div>
 </div>
 @endsection

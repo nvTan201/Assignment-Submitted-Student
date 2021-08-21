@@ -19,6 +19,8 @@ class Exercise extends Migration
             $table->string('content');
             $table->dateTime('postingTime');
             $table->dateTime('deadlineSubmission');
+            $table->boolean('title');
+            $table->boolean('status');
             $table->unsignedInteger('idGrade');
             $table->unsignedInteger('idTeacher');
             $table->foreign('idGrade')->references('idGrade')->on('grade');
