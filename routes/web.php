@@ -56,6 +56,7 @@ Route::middleware([CheckLogin::class])->group(function () {
         Route::get('/get-all-file', [FileController::class, 'getAllFile'])->name('get-all-file');
         Route::post('/dowload-file', [FileController::class, 'dowloadFile'])->name('dowload-file');
     });
+    Route::get('/xem-diem', [PointsController::class, 'xemDiem'])->name('xemDiem');
 });
 
 // Route::get('grade/create', [GradeController::class, 'create']);
