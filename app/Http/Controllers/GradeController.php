@@ -73,9 +73,7 @@ class GradeController extends Controller
      */
     public function show($id)
     {
-        // $grade = Grade::$grade = Grade::where('idGrade', '=', $id)->first();
-        // SELECT * FROM `grade` INNER JOIN exercise ON exercise.idGrade= grade.idGrade 
-        // INNER JOIN teacher ON teacher.idTeacher WHERE grade.idGrade
+
         $grades = DB::table('grade')
             ->join('exercise', 'grade.idGrade', '=', 'exercise.idGrade')
             ->select('grade.*', 'exercise.*')

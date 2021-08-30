@@ -8,10 +8,9 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên file/Text</th>
+                <th scope="col">Tên bài tập</th>
                 <th  scope="col">Nội dung</th>
                 <th scope="col">Ngày nộp</th>
-                
                 
               </tr>
             </thead>
@@ -19,10 +18,9 @@
               @foreach($files as $file)
               <tr>
                 <th scope="row">{{ $file->idExerciseFinish }}</th>
-                <td>{{ $file->title }}</td>
+                <td>{{ $file->question }}</td>
                 <td>{{ $file->exerciseFinish }}</td>
                 <td>{{ $file->responseTime }}</td>
-                
              
               </tr>
               @endforeach

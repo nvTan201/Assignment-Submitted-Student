@@ -6,13 +6,11 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\FileController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
-
+// use App\Http\Controllers\CalenderController;
 use App\Http\Middleware\CheckLogged;
 
 use App\Http\Middleware\CheckLogin;
-
-
-
+use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Round;
 
 // use App\Http\Controllers\GradeController;
 // use App\Http\Controllers\GradeController1;
@@ -56,7 +54,12 @@ Route::middleware([CheckLogin::class])->group(function () {
         Route::get('/get-all-file', [FileController::class, 'getAllFile'])->name('get-all-file');
         Route::post('/dowload-file', [FileController::class, 'dowloadFile'])->name('dowload-file');
     });
-    Route::get('/xem-diem', [PointsController::class, 'xemDiem'])->name('xemDiem');
+
+    Route::resource('Points', PointsController::class);
+    Route::resource('/calender', CalenderController::class);
+
+    // Route::get('/calender', [CalenderController::class, 'index']);
+    Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 });
 
 // Route::get('grade/create', [GradeController::class, 'create']);

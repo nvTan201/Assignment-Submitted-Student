@@ -9,82 +9,40 @@
 
                     <table class="table">
                         <thead class="text-primary">
-                            <th><h3>Relation View</h3></th>
+                            <th><h3>Chi tiết bài tập</h3></th>
                         <th> 
                             
                       <!-- Button trigger modal -->
                       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Start Assignment</button>
                       
                         </th>
-                    </thead>
+                        </thead>
                         <tr>
                             <td>
 
-                                <b>Due </b>  {{ $exercises->postingTime }}
+                                <b>Ngày đăng : </b>  {{ $exercises->postingTime }}
                                 <br>
-                                <p> <b>Submisstting </b> file upload</p>
+                                <p> <b>Phương thức nộp bài  : </b> file upload, text entry,...</p>
                                 <br>
-                                <p>Dealine : {{ $exercises->deadlineSubmission }}</p>
+                                <p>Hạn nộp  : {{ $exercises->deadlineSubmission }}</p>
 
-                                <b>Đề bài: </b> {{ $exercises->question }}<br>
+                                <b>Đề bài  : </b> {{ $exercises->question }}<br>
                             </td>
                         </tr>
                         <tr>
                             <br>
-                               
-                           
-                                
-                                {{-- <td>
-                                    <div id="source-html">
-                                        <p>{{ $exercises->content }}</p>
-                                   </div>
-                                </td> 
-                                <td>
-                                    <div class="content-footer">
-                                        <button id="btn-export btn btn-danger" onclick="exportHTML();"> Export to word doc </button>
+                             <h6 class="card-subtitle mb-2 text-muted"><b> File bài tập :</b></h6>
+                                <div class="form-group lable-floating">
+                                    <div class="alert col-md-7" dada-notify="container">
+                                        <button type="button" class="close" value="Dowload" id="btnPrint">
+                                            <a href="{{ asset($exercises->content) }}" id="dvContainer">
+                                                <i class="material-icons" style="color: black;size:100px"> get_app</i>
+                                            </a>
+                                        </button>
+                                        <span id="fileFinish"> {{ basename($exercises->content ).PHP_EOL}}</span>
                                     </div>
-                            <script>
-                                function exportHTML(){
-                                    var header= "<html xmlns:o='urn:cchemas-microsoft-com:office:offic'"+
-                                                "xmlns:w='urn:schemas-microsoft-com:office:word'"+
-                                                "xmlns='http://www.w3.org/TR/REC-html40'>"+
-                                                "<head><meta charset='utf-8'><title>Export HTML Word Document with JavaScript</title></head><body>";
-                                    var footer = "</body></html>";
-                                    var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
-
-                                    var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-                                    var fileDowload = document.createElement("a");
-                                    document.body.appendChild(fileDowload);
-                                    fileDowload.href=source;
-                                    fileDowload.download = 'document.doc';
-                                    fileDowload.click();
-                                    document.body.removeChild(fileDowload);
-                                }
-                            </script>
-                                </td> --}}
-                                <td>
-                                    <form id="form1">
-                                        <div id="dvContainer">
-                                            <p>{{ $exercises->content }}</p>
-                                        </div>
-                                        <input type="button" value="tải về" id="btnPrint" />
-                                    </form>
-                                        <script type="text/javascript">
-                                            $("#btnPrint").live("click", function () {
-                                                var divContents = $("#dvContainer").html();
-                                                var printWindow = window.open('', '', 'height=400,width=800');
-                                                printWindow.document.write('<html><head><title>ĐỀ BÀI</title>');
-                                                printWindow.document.write('</head><body >');
-                                                printWindow.document.write(divContents);
-                                                printWindow.document.write('</body></html>');
-                                                printWindow.document.close();
-                                                printWindow.print();
-                                            });
-                                        </script>
-                                </td>
-                               
+                                </div>
                                 <br>
-                               
                             </tr>
                             <tr>
                         </tr>
@@ -126,12 +84,22 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="pill1">
+                                         
+                                           
                                             <form enctype="multipart/form-data" action="{{ route('file.upload-file') }}" method="POST">
                                                 @csrf
-                                            <input type="hidden" name="status" value="1">
-                                            <input type="hidden" name="title" value="{{ $exercises->title }}">
+                                            {{-- <input type="hidden" name="status" value="1"> --}}
+                                            <input type="hidden" name="titleFinish" value="1">
                                             <br>
                                             <input type="hidden" name="idExercise" value="{{ $exercises->idExercise }}">
+                                            <br>
+                                            <input type="hidden" name="check">
+
+                                            @if ($check =0)
+                                            <div class="d-inline p-2 bg-primary text-white">Nộp muộn</div>
+                                            @else
+                                            <div class="d-inline p-2 bg-dark text-white">Nộp đúng hạn</div>
+                                            @endif
                                             <br>
                                              Ngày nộp: <input type='datetime' id='date' value='<?php echo date('Y-m-d h:m:s');?>'name="responseTime" readonly> 
                                              
@@ -157,14 +125,20 @@
                                             <h4>Làm bài tập</h4>
                                             <form action="{{ route('ExerciseFinish.store') }}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="status" value="1">
-                                                <input type="hidden" name="title" value="{{ $exercises->title }}">
+                                                {{-- <input type="hidden" name="status" value="1"> --}}
+                                                <input type="hidden" name="titleFinish" value="0">
                                                 <input type="hidden" name="idExercise" value="{{ $exercises->idExercise }}">
+                                                
+                                                @if ($check =1)
+                                                <div class="d-inline p-2 bg-primary text-white">Nộp đúng hạn</div>
+                                                @else
+                                                <div class="d-inline p-2 bg-dark text-white">Nộp bài muộn</div>
+                                                @endif
+                                                <br>    
+                                                     Ngay nop:  <input type='datetime' id='date' value='<?php echo date('Y-m-d h:m:s');?>'
+                                                name="responseTime" readonly><br><br>
 
-                                            Ngay nop:  <input type='datetime' id='date' value='<?php echo date('Y-m-d h:m:s');?>' min ="{{ asset($exercises->postingTime) }}"
-                                                max="{{ asset($exercises->deadlineSubmission) }}" name="responseTime" readonly><br><br>
-
-                                                <a href="{{ asset($exercises->content) }}" download> Mẫu excel để điền </a>
+                                               
                                                 <textarea name="text" id="text" cols="100" rows="10"></textarea>
                                                 <br>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

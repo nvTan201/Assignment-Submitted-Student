@@ -18,13 +18,20 @@ class FileController extends Controller
     public function uploadFile(Request $request)
     {
 
-
+        $check = null;
         $file = $request->file('file');
         $student = session()->get('id');
         $idExercise = $request->get('idExercise');
-        $title = $request->get('title');
-        $status = $request->get('status');
-
+        $responseTime = $request->get('responseTime');
+        $deadline = $request->get('deadlineSubmission');
+        $titleFinish = $request->get('titleFinish');
+        // dd($title);
+        // $status = $request->get('status');
+        if ($responseTime <= $deadline) {
+            $check = 0;
+        } else {
+            $check = 1;
+        }
         $responseTime = $request->get('responseTime');
         $url = 'upload/' . $file->getClientOriginalName();
         $fileData = new FileData();
@@ -32,20 +39,23 @@ class FileController extends Controller
         $fileData->idStudent = $student;
         $fileData->responseTime = $responseTime;
         $fileData->exerciseFinish = $url;
-        $fileData->title = $title;
-        $fileData->status = $status;
+        // $fileData->$check;
+        $fileData->titleFinish = $titleFinish;
+        // $fileData->status = $status;
         // dd($url);
         // return $request;
         $fileData->save();
-        $file->move('upload' . $file->getClientOriginalName());
+        $file->move('upload', $file->getClientOriginalName());
         return Redirect::route("file.get-all-file")->with('error', [
             "message" => "Submission"
         ]);
     }
     public function getAllFile()
     {
-        $files = FileData::all();
+        $files = FileData::join('exercise', 'exercise.idExercise', '=', 'exercise_finish.idExercise')
+            ->select('exercise_finish.*', 'exercise.*')->get();
         return view('exerciseFinish.index', ['files' => $files]);
+        // return view('ExerciseFinish.index');
         // return $files;
     }
 

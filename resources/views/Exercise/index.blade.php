@@ -22,13 +22,13 @@
                  <table class="table table-striped " >
                         <tr>
                              <td>
-                                <b>Upcoming Submission : </b>{{ $exercise->nameGrade  }}
+                                <b>Bài Tập : 
                             </td>
                         </tr>
                         <tr>
                             <td> <label class="label-control">{{ $exercise->question }} </label>
                                 <br>
-                                <p class="label-control"> <b>Ngày đăng:</b> {{ $exercise->postingTime }}|<b>Deadline</b>{{ $exercise->deadlineSubmission }} |10Point</p>
+                                <p class="label-control"> <b>Ngày đăng:</b> {{ $exercise->postingTime }}|<b>Hạn nộp : </b>{{ $exercise->deadlineSubmission }} |10Point</p>
                             </td>
                             
                         </tr>

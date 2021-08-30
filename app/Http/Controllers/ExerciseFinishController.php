@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\ExerciseFinish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use mysqli;
 
 class ExerciseFinishController extends Controller
 {
@@ -16,7 +17,12 @@ class ExerciseFinishController extends Controller
      */
     public function index()
     {
+        // $files = ExerciseFinish::join('exercise', 'exercise.idExercise', '=', 'exercise_finish.idExercise')
+        //     ->select('exercise_finish.*', 'exercise.*')->get();
+        // return view('exerciseFinish.index', ['files' => $files]);
         return view('ExerciseFinish.index');
+        // return Redirect::route("file.get-all-file");
+        // return $files;
     }
 
     /**
@@ -37,27 +43,37 @@ class ExerciseFinishController extends Controller
      */
     public function store(Request $request)
     {
-
+        $deadline = $request->get('deadlineSubmission');
         $idExercise = $request->get('idExercise');
         $student = session()->get('id');
         $text = $request->get('text');
         $responseTime = $request->get('responseTime');
-        $title = $request->get('title');
-        $status = $request->get('status');
-        // dd($request->get('title'));
+        $titleFinish = $request->get('titleFinish');
+        // $status = $request->get('status');
+        // dd($request);
+        if ($responseTime <= $deadline) {
+            $check = 1;
+        } else {
+            $check = 0;
+        }
+
+
         $exerciseFinish = new ExerciseFinish();
         $exerciseFinish->idExercise = $idExercise;
         $exerciseFinish->idStudent = $student;
         $exerciseFinish->exerciseFinish = $text;
         $exerciseFinish->responseTime = $responseTime;
-        $exerciseFinish->title = $title;
-        $exerciseFinish->status = $status;
+        $exerciseFinish->titleFinish = $titleFinish;
+        // $exerciseFinish->status = $status;
         $exerciseFinish->save();
         return redirect()->route('file.get-all-file')->with('error', [
             "message" => 'đăng thành công'
         ]);
-        // return $request;
-        // return Redirect::route("file.get-all-file");
+        // return $exerciseFinish;
+
+        return Redirect::route("file.get-all-file", [
+            "check" => $check,
+        ]);
     }
 
     /**
