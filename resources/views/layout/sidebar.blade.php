@@ -23,7 +23,7 @@
                         <div class="collapse" id="collapseExample">
                             <ul class="nav">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('student.index') }}">
                                         <span class="sidebar-mini"> MP </span>
                                         <span class="sidebar-normal"> My Profile </span>
                                     </a>
@@ -122,7 +122,7 @@
                    
                    
                     <li>
-                        <a href="{{ route('calender.index') }}">
+                        <a href="{{ url('calendar-event') }}">
                             <i class="material-icons">date_range</i>
                             <p> Calendar </p>
                         </a>

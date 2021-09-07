@@ -8,7 +8,7 @@ use App\Student;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
-class StudentrController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.

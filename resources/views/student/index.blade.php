@@ -17,52 +17,47 @@
         </button>
     </form>
     <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                   
-                    <th>Mã học sinh</th>
-                    <th>Tên học sinh</th>
-                    <th>ngày sinh</th>
-                    <th>giới tính</th>
-                    <th >email</th>
-                    <th>mật khẩu</th>
-                    <th>lớp</th>
-                </tr>
-            </thead>
-            <tbody>
-                 @foreach ($students as $student)
-                <tr>
-                 
-                    <td>{{ $student->idStudent }}</td>
-                    <td>{{ $student->fistNameStudent." ". $student->lastNameStudent}}</td>
-                    <td>{{ $student->dateBirth }}</td>
-                    <td>{{ $student->gender }}</td>
-                    <td>{{ $student->emailStudent }}</td>
-                    <td>{{ $student->passWordStudent }}</td>
-                    <td> {{ $student->idGrade }}</td>
-                    {{-- <td>{{ $student->grade->nameGrade."k".$student->grade->course }}</td> --}}
-                    {{-- <td >  <a href="{{ route('grade.show', $grade->idGrade) }}">xem</td>
-
-                    <td>
-                        <a href="{{ route('grade.edit', $grade->idGrade) }}"  class="btn btn-success" ><i class="material-icons">edit</i></a>
-                     </td> --}}
-             
-                    {{-- <td >
-                        
-                           <form action="{{ route('grade.destroy',$grade->idGrade ) }}" method="post" id="LoginValidation">
-                            @method('DELETE')
-                            @csrf
-                        <button onclick=" return confirm('Bạn có muốn xóa không')" class="btn btn-danger btn sm">
-                            <i class="material-icons">close</i>
-                        </button>
-                       
-                           </form>
-                    </td> --}}
-                </tr>
-                @endforeach 
-            </tbody>
-        </table>
+        <form>
+            @foreach ($students as $student)
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Tên học sinh</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $student->fistNameStudent." ". $student->lastNameStudent}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Ngày sinh</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $student->dateBirth }}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Giới tính</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $student->gender }}">
+                </div>
+              </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $student->emailStudent }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="{{ $student->passWordStudent }}">
+              </div>
+              <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $student->idGrade }}">
+              </div>
+            </div>
+            </div>
+            @endforeach 
+          </form>
+        
          {{-- $grades->linhs() phan trang
                 appends tim kiem
             --}}

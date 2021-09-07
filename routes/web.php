@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\CalenderController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\CalenderController;
@@ -39,7 +40,7 @@ Route::middleware([CheckLogin::class])->group(function () {
         return view('dashboard');
     })->name('dashboard');
     Route::resource('grade', GradeController::class);
-    Route::resource('student', StudentrController::class);
+    Route::resource('student', StudentController::class);
     Route::resource('ExerciseFinish', ExerciseFinishController::class);
     Route::resource('Exercise', ExerciseController::class);
 
@@ -56,9 +57,8 @@ Route::middleware([CheckLogin::class])->group(function () {
     });
 
     Route::resource('Points', PointsController::class);
-    Route::resource('/calender', CalenderController::class);
 
-    // Route::get('/calender', [CalenderController::class, 'index']);
+    Route::get('/calendar-event', [CalenderController::class, 'index']);
     Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 });
 
